@@ -118,12 +118,13 @@ detect_anoms <- function(data, k = 0.49, alpha = 0.05, num_obs_per_period = NULL
         if(R > lam)
             num_anoms <- i
     }
+    message(paste("before chop: ",length(R_idx)))  
     
     if(num_anoms > 0) {
       R_idx <- R_idx[1L:num_anoms]
     } else {
       R_idx = NULL
     }
-      
+    message(paste("right before return: ",length(R_idx)))  
     return(list(anoms = R_idx, stl = data_decomp))
 }
