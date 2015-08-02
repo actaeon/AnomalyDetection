@@ -83,16 +83,18 @@ detect_anoms <- function(data, k = 0.49, alpha = 0.05, num_obs_per_period = NULL
             }
         } else {
             ares = abs(data[[2L]] - func_ma(data[[2L]]))
+            message(ares)
         }
 
         # protect against constant time series
         data_sigma <- func_sigma(data[[2L]])
+        message(paste("Data Sigma: ", data_sigma))
         if(data_sigma == 0) 
             break
 
         ares <- ares/data_sigma
         R <- max(ares)
-
+        message(paste("R: ",R))
         temp_max_idx <- which(ares == R)[1L]
 
         R_idx[i] <- data[[1L]][temp_max_idx]
@@ -104,10 +106,13 @@ detect_anoms <- function(data, k = 0.49, alpha = 0.05, num_obs_per_period = NULL
             p <- 1 - alpha/(n-i+1)
         } else {
             p <- 1 - alpha/(2*(n-i+1))
+            message(paste("Probability: ",p))
         }
 
         t <- qt(p,(n-i-1L))
+        message(paste("t: ",t))
         lam <- t*(n-i) / sqrt((n-i-1+t**2)*(n-i+1))
+        message(paste("lam: ",lam))
 
         if(R > lam)
             num_anoms <- i
