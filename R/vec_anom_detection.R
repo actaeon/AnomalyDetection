@@ -161,7 +161,6 @@ AnomalyDetectionVec = function(x, max_anoms=0.10, direction='pos',
     # as well as the decomposed components of the time series for further analysis.
     s_h_esd_timestamps <- detect_anoms(all_data[[i]], k=max_anoms, alpha=alpha, num_obs_per_period=period, use_decomp=TRUE, use_esd=FALSE, 
                                        one_tail=anomaly_direction$one_tail, upper_tail=anomaly_direction$upper_tail, verbose=verbose) 
-    message(s_h_esd_timestamps) 
     # store decomposed components in local variable and overwrite s_h_esd_timestamps to contain only the anom timestamps
     data_decomp <- s_h_esd_timestamps$stl
     s_h_esd_timestamps <- s_h_esd_timestamps$anoms
@@ -173,6 +172,7 @@ AnomalyDetectionVec = function(x, max_anoms=0.10, direction='pos',
       anoms <- data.frame(timestamp=numeric(0), count=numeric(0))
     }
     # Filter the anomalies using one of the thresholding functions if applicable
+    message(threshold)
     if(threshold != "None"){
       # Calculate daily max values
       if(!is.null(longterm_period)){
