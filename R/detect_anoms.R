@@ -115,9 +115,12 @@ detect_anoms <- function(data, k = 0.49, alpha = 0.05, num_obs_per_period = NULL
         lam <- t*(n-i) / sqrt((n-i-1+t**2)*(n-i+1))
         message(paste("lam: ",lam))
 
-        if(R > lam)
+        if(R > lam) {
             message("******************************************R > lam")
             num_anoms <- i
+        } else {
+            message("---------------------------------------------R > lam")
+        }
     }
     message(paste("before chop: ",length(R_idx)))  
     
