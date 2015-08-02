@@ -172,7 +172,7 @@ AnomalyDetectionVec = function(x, max_anoms=0.10, direction='pos',
     } else {
       anoms <- data.frame(timestamp=numeric(0), count=numeric(0))
     }
-    
+    message(anoms) 
     # Filter the anomalies using one of the thresholding functions if applicable
     if(threshold != "None"){
       # Calculate daily max values
