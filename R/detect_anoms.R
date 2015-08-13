@@ -98,7 +98,7 @@ detect_anoms <- function(data, k = 0.49, alpha = 0.05, num_obs_per_period = NULL
         temp_max_idx <- which(ares == R)[1L]
 
         R_idx[i] <- data[[1L]][temp_max_idx]
-        message(paste("Data value: ",data[[1L]][temp_max_idx])
+        message(paste("Data value: ",data[[1L]][temp_max_idx]))
 
         data <- data[-which(data[[1L]] == R_idx[i]), ]
 
