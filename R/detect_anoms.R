@@ -15,7 +15,7 @@ detect_anoms <- function(data, k = 0.49, alpha = 0.05, num_obs_per_period = NULL
  #	 verbose: Additionally printing for debugging.
  # Returns:
  #   A list containing the anomalies (anoms) and decomposition components (stl).
-
+    blah <- data
     if(is.null(num_obs_per_period)){
         stop("must supply period length for time series decomposition")
     }
